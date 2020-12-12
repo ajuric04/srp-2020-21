@@ -26,7 +26,7 @@ module.exports = {
   api: {
     prefix: "/api",
   },
-  jwt:{
+  jwt: {
    secret: process.env.JWT_SECRET,
    expiresIn: process.env.JWT_DURATION || "1h",
    algorithms: ["HS256"],

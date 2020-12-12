@@ -1,5 +1,6 @@
 
-const jmt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const config = require("../config");
 class LoginService {
   constructor({ logger, userModel }) {
@@ -23,7 +24,8 @@ class LoginService {
       throw new error("authentication failed");
     }
     this.logger.info("checking password");
-    if(userRecord.password === password){
+    const validPassword = await bcrypt.compare(password, userRecord.password);
+    if(validPassword){
       this.logger.info("password correct");
       const user = {
         username: userRecord.username,
