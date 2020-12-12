@@ -39,6 +39,8 @@ class LoginService {
       return {user, token}
 
     }
+    this.logger.error("password invalid");
+      throw new error("authentication failed");
   }
 generateToken(payload){
   return jwt.sign(payload, config.jwt.secret, {
